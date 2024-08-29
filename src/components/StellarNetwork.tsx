@@ -3,10 +3,10 @@ import { useFrame } from "@react-three/fiber";
 import * as THREE from "three";
 import { OrbitControls, Text } from "@react-three/drei";
 import GridCube from "./GridCube";
-import ActiveNode from "./ActiveNode";
+
 import NetworkInteraction from "./NetworkInteraction";
 import useStellarData from "../hooks/useStellarData";
-import CubeEdges from "./CubeEdges";
+
 import Node from "./Node";
 const StellarNetwork = () => {
   const { nodes, transactions, quorumConsensus } = useStellarData();
