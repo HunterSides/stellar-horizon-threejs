@@ -40,8 +40,8 @@ const NetworkInteraction: React.FC<NetworkInteractionProps> = ({
   return (
     <mesh ref={ref}>
       <sphereGeometry args={[0.1, 8, 8]} />
-      <meshBasicMaterial color="#00bfff" transparent opacity={0.8} />
-      <pointLight color="#00bfff" intensity={0.5} distance={1} />
+      <meshBasicMaterial color="#ffff00" transparent opacity={0.8} />
+      <pointLight color="#ffff00" intensity={0.5} distance={1} />
     </mesh>
   );
 };

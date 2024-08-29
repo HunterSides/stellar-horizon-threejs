@@ -13,7 +13,7 @@ const GridCube: React.FC<GridCubeProps> = ({ size, gridSize }) => {
   return (
     <>
       <lineSegments geometry={edges}>
-        <lineBasicMaterial color="#1a5fb4" opacity={0.3} transparent />
+        <lineBasicMaterial color="#1a5fb4" opacity={0.2} transparent />
       </lineSegments>
       {Array.from({ length: gridSize }).map((_, x) =>
         Array.from({ length: gridSize }).map((_, y) =>
@@ -29,7 +29,7 @@ const GridCube: React.FC<GridCubeProps> = ({ size, gridSize }) => {
               <boxGeometry
                 args={[size / gridSize, size / gridSize, size / gridSize]}
               />
-              <meshBasicMaterial color="#1a5fb4" opacity={0.1} transparent />
+              <meshBasicMaterial color="#1a5fb4" opacity={0.05} transparent />
             </mesh>
           ))
         )

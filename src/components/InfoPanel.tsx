@@ -11,20 +11,23 @@ const InfoPanel: React.FC<InfoPanelProps> = ({
   transactionCount,
 }) => {
   return (
-    <Html>
+    <Html position={[-5, 5, 0]}>
       <div
         style={{
           backgroundColor: "rgba(0, 0, 0, 0.7)",
           padding: "10px",
-          color: "white",
+          color: "#00bfff",
           fontFamily: "Arial",
+          borderRadius: "5px",
+          border: "1px solid #00bfff",
         }}
       >
         <h3>Stellar Network Visualization</h3>
-        <p>Nodes: {nodeCount}</p>
-        <p>Transactions: {transactionCount}</p>
-        <p>Blue spheres: Nodes</p>
-        <p>Yellow particles: Transactions</p>
+        <p>Total Nodes: {nodeCount}</p>
+        <p>Recent Transactions: {transactionCount}</p>
+        <p>Bright Blue: Active nodes in quorum</p>
+        <p>Dark Blue: Inactive nodes</p>
+        <p>Yellow Particles: Network interactions</p>
       </div>
     </Html>
   );

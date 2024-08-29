@@ -5,9 +5,19 @@ interface ActiveNodeProps {
   position: Vector3;
   node: any;
   onHover: (node: any | null) => void;
+
+  isInQuorum: boolean;
 }
 
-const ActiveNode: React.FC<ActiveNodeProps> = ({ position, node, onHover }) => {
+const Node: React.FC<ActiveNodeProps> = ({
+  position,
+  node,
+  onHover,
+  isInQuorum,
+}) => {
+  const color = isInQuorum ? "#00bfff" : "#1a5fb4";
+  const intensity = isInQuorum ? 0.8 : 0.3;
+
   return (
     <mesh
       position={position}
@@ -15,10 +25,10 @@ const ActiveNode: React.FC<ActiveNodeProps> = ({ position, node, onHover }) => {
       onPointerOut={() => onHover(null)}
     >
       <boxGeometry args={[0.8, 0.8, 0.8]} />
-      <meshBasicMaterial color="#00bfff" />
-      <pointLight color="#00bfff" intensity={0.5} distance={2} />
+      <meshBasicMaterial color={color} />
+      <pointLight color={color} intensity={intensity} distance={2} />
     </mesh>
   );
 };
 
-export default ActiveNode;
+export default Node;
