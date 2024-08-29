@@ -1,26 +1,24 @@
 import React from "react";
-import { Sphere } from "@react-three/drei";
-import * as THREE from "three";
+import { Vector3 } from "three";
 
-interface NodeProps {
-  position: THREE.Vector3;
+interface ActiveNodeProps {
+  position: Vector3;
   node: any;
   onHover: (node: any | null) => void;
 }
 
-const Node: React.FC<NodeProps> = ({ position, node, onHover }) => {
+const ActiveNode: React.FC<ActiveNodeProps> = ({ position, node, onHover }) => {
   return (
-    <Sphere args={[0.2, 16, 16]} position={position}>
-      <meshStandardMaterial color="lightblue" />
-      <mesh
-        onPointerOver={() => onHover(node)}
-        onPointerOut={() => onHover(null)}
-      >
-        <sphereGeometry args={[0.2, 16, 16]} />
-        <meshBasicMaterial visible={false} />
-      </mesh>
-    </Sphere>
+    <mesh
+      position={position}
+      onPointerOver={() => onHover(node)}
+      onPointerOut={() => onHover(null)}
+    >
+      <boxGeometry args={[0.8, 0.8, 0.8]} />
+      <meshBasicMaterial color="#00bfff" />
+      <pointLight color="#00bfff" intensity={0.5} distance={2} />
+    </mesh>
   );
 };
 
-export default Node;
+export default ActiveNode;

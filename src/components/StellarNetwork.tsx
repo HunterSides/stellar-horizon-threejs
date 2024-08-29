@@ -1,16 +1,17 @@
-import React, { useMemo, useRef } from "react";
+import React, { useMemo, useRef, useState } from "react";
 import { useFrame } from "@react-three/fiber";
 import * as THREE from "three";
-import { OrbitControls } from "@react-three/drei";
+import { OrbitControls, Text } from "@react-three/drei";
 import GridCube from "./GridCube";
 import ActiveNode from "./ActiveNode";
 import NetworkInteraction from "./NetworkInteraction";
 import useStellarData from "../hooks/useStellarData";
-
-const StellarNetwork: React.FC = () => {
+import CubeEdges from "./CubeEdges";
+import Node from "./Node";
+const StellarNetwork = () => {
   const { nodes, transactions } = useStellarData();
   const groupRef = useRef<THREE.Group>(null);
-
+  const [hoveredNode, setHoveredNode] = useState<any | null>(null);
   const gridSize = 10; // 10x10x10 grid
   const cubeSize = 10;
 
@@ -25,7 +26,7 @@ const StellarNetwork: React.FC = () => {
     }));
   }, [nodes]);
 
-  useFrame(() => {
+  useFrame((state) => {
     if (groupRef.current) {
       groupRef.current.rotation.y += 0.001;
     }
@@ -37,9 +38,14 @@ const StellarNetwork: React.FC = () => {
       <group ref={groupRef}>
         <GridCube size={cubeSize} gridSize={gridSize} />
         {activeNodes.map((node, index) => (
-          <ActiveNode key={node.id} position={node.position} />
+          <Node
+            key={node.id}
+            position={node.position}
+            node={activeNodes[index]}
+            onHover={setHoveredNode}
+          />
         ))}
-        {transactions.slice(0, 5).map((transaction, index) => (
+        {transactions.slice(0, 5).map((transaction) => (
           <NetworkInteraction
             key={transaction.id}
             startPosition={activeNodes[transaction.fromNodeIndex].position}
@@ -47,6 +53,17 @@ const StellarNetwork: React.FC = () => {
           />
         ))}
       </group>
+      {hoveredNode && (
+        <Text
+          position={[0, cubeSize / 2 + 1, 0]}
+          fontSize={0.5}
+          color="white"
+          anchorX="center"
+          anchorY="middle"
+        >
+          {`Node: ${hoveredNode.id.substr(0, 8)}...`}
+        </Text>
+      )}
     </>
   );
 };

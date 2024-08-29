@@ -1,5 +1,6 @@
 import { Canvas } from "@react-three/fiber";
 import StellarNetwork from "../components/StellarNetwork";
+
 import InfoPanel from "../components/InfoPanel";
 import useStellarData from "../hooks/useStellarData";
 

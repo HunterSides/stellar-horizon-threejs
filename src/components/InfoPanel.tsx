@@ -11,7 +11,7 @@ const InfoPanel: React.FC<InfoPanelProps> = ({
   transactionCount,
 }) => {
   return (
-    <Html position={[-5, 5, 0]}>
+    <Html>
       <div
         style={{
           backgroundColor: "rgba(0, 0, 0, 0.7)",
